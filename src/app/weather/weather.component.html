@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card bg-light text-dark" style="height: 585px">
+        <div class="card-header">
+          <h3 class="text-center my-4">Search for Weather:</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="weatherSearchForm" (ngSubmit)="sendToAPIXU(weatherSearchForm.value)">
+            <div class="form-group">
+              <select class="form-control" id="weatherLocation" aria-describedby="weatherLocation" placeholder="Please input a Location"
+                formControlName="location">
+                <option value="" style="display:none" selected="selected">Please select the country</option>
+                <option *ngFor="let location of this.dataList;let i = index" value="{{location.name}}" [selected]="i == 0">
+                  {{location.name}}
+                </option>
+              </select>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-success btn-md">
+                Search for the weather
+              </button>
+            </div>
+          </form>
+          <!-- <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card bg-light text-dark" style="height: 585px">
+        <div class="card-header">
+          <h3 class="text-center my-4">Weather Details:</h3>
+        </div>
+        <div class="card-body">
+          <p class="text-left">
+            Current weather conditions: {{ this.weatherData?.weather[0].main}}
+          </p>
+          <p class="text-left">
+            Current weather conditions Description: {{ this.weatherData?.weather[0].description}}
+          </p>
+          <p class="text-left">
+            Wind speed in Current City: {{ this.weatherData?.wind.speed}}
+          </p>
+          <p class="text-left">
+            Temperature in Average Temperature: {{ this.weatherData?.main.temp }}
+          </p>
+          <p class="text-left">
+            Temperature in Maximum Temperature: {{ this.weatherData?.main.temp_max }}
+          </p>
+          <p class="text-left">
+            Feels like in Minimum Temperature: {{ this.weatherData?.main.temp_min}}
+          </p>
+          <p class="text-left">
+            Feels like in Humidity: {{ this.weatherData?.main.humidity }}
+          </p>
+          <p class="text-left">
+            Feels like in Cloud Percentage: {{ this.weatherData?.clouds.all}}%
+          </p>
+          <p class="text-left">
+            Feels like in Humidity: {{ this.weatherData?.main.humidity }}
+          </p>
+          <p class="text-left">
+            Feels like in Humidity: {{ this.weatherData?.main.humidity }}
+          </p>
+          <p class="text-left">
+            Location Searched: {{ this.weatherData?.name }}, {{ this.weatherData?.sys.country }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
